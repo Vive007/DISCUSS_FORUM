@@ -50,6 +50,8 @@ include'header.php';?>
     $query3=mysqli_query($link,$sql3);
     while($fetch=mysqli_fetch_assoc($query3))
     {
+        //good logic to use ?catno=$fetch['sn.no']; that store in get variable.
+        //to acces in referd site using href to access this.
 echo "
 <div class='col-md-4 my-3'>
     <div class='card' style='width: 18rem;'>
