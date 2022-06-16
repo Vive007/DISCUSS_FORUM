@@ -10,58 +10,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>DISCUS</title>
 </head>
 
 <body>
-<?php
-      require'data_link.php';
-$tab=false;
-// Taking data in signup form.
-@$user_id=$_POST['userid'];
-@$password=$_POST['password'];
-@$cnpassword=$_POST['cnpassword'];
-
-// inserting data into database by checking user is new user or not.
-$data1="SELECT * FROM`user_info`WHERE`user_id` ='$user_id'";
-$sql=mysqli_query($link,$data1);
-$row=mysqli_num_rows($sql);
-//echo $row;
-if(($password==$cnpassword)&&(!$row))
-$tab=true;
-    //echo "user already register or<br>password not match with confirm password.<br>";
-
-if($tab)
-{ $encryption=password_hash($password,PASSWORD_DEFAULT);
-    $data2="INSERT INTO `user_info` (`sn.no`,`user_id`, `password`, `dos`) VALUES (NULL,'$user_id', '$encryption', current_timestamp())";
-    $sql2=mysqli_query($link,$data2);
-    //var_dump($sql2);
-    if($sql2)
-    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-    <strong>Registerd successfuly!</strong> Pls login again...
-    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-      <span aria-hidden='true'>&times;</span>
-    </button>
-  </div>";
-}
-else
-echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-<strong>Opps!</strong> It seems like user already register or password not match with confirm password.
-<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-  <span aria-hidden='true'>&times;</span>
-</button>
-</div>";
-
-?>
-    <?php include'header.php';?>
+    <?php 
+require'data_link.php';
+include'header.php';?>
     <!-- crousel slider code start from here -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://source.unsplash.com/random/1920x500/?car" class="d-block w-100" alt="">
+                <img src="https://source.unsplash.com/random/1920x500/?code,programing" class="d-block w-100" alt="">
             </div>
             <div class="carousel-item">
-                <img src="https://source.unsplash.com/random/1920x500/?Bike" class="d-block w-100" alt="...">
+                <img src="https://source.unsplash.com/random/1920x500/?code,structure" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="https://source.unsplash.com/random/1920x500/?code,algorithm" class="d-block w-100" alt="...">
@@ -78,142 +41,43 @@ echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
     </div>
     <!-- card code start from here we fetch card using php and loop -->
     <div class="container">
-        <h2 class="text-center text-primary">iDiscuss-platform</h2>
-        <div class="row my-2">
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/1920x1080/?car" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
+        <h2 class="text-center text-primary my-3">iDiscuss-platform</h2>
+        <div class='row my-2'>
+            <?php
+      
+      // $i=1;
+    $sql3="SELECT * FROM `discuss_display`";
+    $query3=mysqli_query($link,$sql3);
+    while($fetch=mysqli_fetch_assoc($query3))
+    {
+echo "
+<div class='col-md-4 my-3'>
+    <div class='card' style='width: 18rem;'>
+        <img src='https://source.unsplash.com/random/1920x1080/?code,".$fetch['Top']." class='card-img-top' alt='...'>
+        <div class='card-body'>
+           <a href='card_insider.php?catno=".$fetch['sn.no']."'><button class='btn btn-secondry'> <h5 class='card-title'>".$fetch['Top']."</h5>
+            <p class='card-text'>".substr($fetch['Description'],0,80)."</p>
+            <button class='btn btn-success'> Go</button></button></a>
         </div>
     </div>
+</div> ";
+//$i++;
 
-    <?php include 'footer.php';
+    }
+    //explanation of substr function();
+    //substr(string $string, int $offset, ?int $length = null): string
+    //$offset means kha se string read krna start krega.-ve means last se .
+    //$length means kitna string read krna hai.
+//Returns the portion of string specified by the offset and length parameters.
+    ?>
+    </div>
+    </div>
+
+    <?php 
+    //include and require not reuires = sign.
+    include 'footer.php';
       ?>
-     
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
