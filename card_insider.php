@@ -34,76 +34,67 @@
     }
    // echo $Top;
     ?>
-<div class='container my-3'>
-<div class='jumbotron '>
-    <h1 class='display-4'>Welcome to discussion forum of <?php echo  $Top ;?>!</h1>
-    <p class='lead'>Pls read term and condition and follow the rule.</p>
-    <hr class='my-4'>
-    <p><?php echo $Des ;?></p>
-    <a class='btn btn-primary btn-lg' href='#' role='button'>Learn more</a>
-</div>
-</div>
-
-<div class='container'>
-<h1 class='text-center text-color-primary py-2'>Discussion of  <?php echo  $Top; ?></h1>
-      
-        <div class="media my-4">
-            <!-- here we set width of image to look better -->
-            <img src="img/User.png" width=35px; class="mr-3" alt="...">
-            <div class="media-body">
-                <h5 class="mt-0">Unable to solve merge conflict in html?</h5>
-                Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
+    <div class='container my-3'>
+        <div class='jumbotron '>
+            <h1 class='display-4'>Welcome to discussion forum of <?php echo  $Top ;?>!</h1>
+            <p class='lead'>Pls read term and condition and follow the rule.</p>
+            <hr class='my-4'>
+            <p><?php echo $Des ;?></p>
+            <a class='btn btn-primary btn-lg' href='#' role='button'>Learn more</a>
         </div>
-
-
-
-
-
-        <div class="media my-4">
-            <!-- here we set width of image to look better -->
-            <img src="img/User.png" width=35px; class="mr-3" alt="...">
-            <div class="media-body">
-                <h5 class="mt-0">Unable to solve merge conflict in html?</h5>
-                Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-
-
-
-
-
-        <div class="media my-4">
-            <!-- here we set width of image to look better -->
-            <img src="img/User.png" width=35px; class="mr-3" alt="...">
-            <div class="media-body">
-                <h5 class="mt-0">Unable to solve merge conflict in html?</h5>
-                Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-        <div class="media my-4">
-            <!-- here we set width of image to look better -->
-            <img src="img/User.png" width=35px; class="mr-3" alt="...">
-            <div class="media-body">
-                <h5 class="mt-0">Unable to solve merge conflict in html?</h5>
-                Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-
-
-
     </div>
 
+    <div class='container'>
+        <h1 class='text-center text-color-primary py-2'>Discussion of <?php echo  $Top; ?></h1>
+        <?php
+        $check=true;
+      $sql4="SELECT * FROM `question_ask`WHERE`Topic`='$Top'";
+      $data4=mysqli_query($link,$sql4);
+      while($fetch1=mysqli_fetch_assoc($data4))
+      { $check=false;
+        $top=$fetch1['Topic'];
+        $nam=$fetch1['Name'];
+        $ques=$fetch1['Question'];
+        $ans=$fetch1['Answer'];
+    echo "<div class='media my-4'>
+    <!-- here we set width of image to look better -->
+    <img src='img/User.png' width=35px; class='mr-3' alt='...'>
+    <div class='media-body'>
+        <h5 class='mt-0'>".$ques." </h5>
+         ".$ans."
+    </div>
+</div>" ;
+    }
+     ?>
+     <?php 
+     if($check)
+     {
+        echo"<div class='jumbotron jumbotron-fluid'>
+        <div class='container'>
+          <p class='display-4'>No question found.</p>
+          <p class='lead'>Be the first to ask the question.</p>
+        </div>
+      </div>";
+      echo '
+      <form action="insert.php?top='.$Top.'" method="POST">
+      <div class="form-group">
+      <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Enter your question.</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="ques" rows="3"></textarea>
+      </div><button class="btn btn-primary">Submit</button>
+    </form>';}
+    // Alwalys good logic to send data to one location to another location
+    ?>
+     </div>
+<?php
+// $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`) VALUES (NULL, '$name', '$Top','$que')";
+    //  $data5=mysqli_query($link,$sql5);
+    //  if($data5)
+    //  echo "inserted successfuly";
+     ?> 
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -117,6 +108,5 @@
     </script>
 </body>
 <?php 
-    require'footer.php';?>
-
+require'footer.php';?>
 </html>
