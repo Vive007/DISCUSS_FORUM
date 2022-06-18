@@ -55,16 +55,17 @@
         $top=$fetch1['Topic'];
         $nam=$fetch1['Name'];
         $ques=$fetch1['Question'];
-        $ans=$fetch1['Answer'];
+        $Id=$fetch1['id'];
     echo "<div class='media my-4'>
     <!-- here we set width of image to look better -->
     <img src='img/User.png' width=35px; class='mr-3' alt='...'>
     <div class='media-body'>
-        <h5 class='mt-0'>".$ques." </h5>
-         ".$ans."
+      <a  href='answer_user.php?na=".$Id." '> <h5 class='mt-0'>".$ques." </h5></a>
+        
     </div>
-</div>" ;
-    }
+</div>" ;}
+    
+    
      ?>
      <?php 
      if($check)
@@ -81,14 +82,21 @@
       <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Enter your name">
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Enter your question.</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" name="ques" rows="3"></textarea>
+    <label for="exampleInputquestion">question title</label>
+    <input type="text" class="form-control" name="question" id="exampleInputquestion" aria-describedby="emailHelp" placeholder="Enter Question">
+    <small id="emailHelp" class="form-text text-muted">pls enter title as brief as possible.</small>
+  </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Enter your question description.</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="descr" rows="3"></textarea>
       </div><button class="btn btn-primary">Submit</button>
     </form>';}
     // Alwalys good logic to send data to one location to another location
     ?>
      </div>
 <?php
+$method=$_SERVER['REQUEST_METHOD'];
+//echo $method;
 // $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`) VALUES (NULL, '$name', '$Top','$que')";
     //  $data5=mysqli_query($link,$sql5);
     //  if($data5)
