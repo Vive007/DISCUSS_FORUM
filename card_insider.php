@@ -31,6 +31,7 @@
         // after closing of while loop.
     $Top=$fetch['Top'];
     $Des=$fetch['Description'];
+    $vId=$fetch['sn.no'];
     }
    // echo $Top;
     ?>
@@ -40,15 +41,38 @@
             <p class='lead'>Pls read term and condition and follow the rule.</p>
             <hr class='my-4'>
             <p><?php echo $Des ;?></p>
-            <a class='btn btn-primary btn-lg' href='#' role='button'>Learn more</a>
+            <!-- <a class='btn btn-primary btn-lg' href='#' role='button'>Ask_question</a> -->
+              <button type="button" class="btn btn-outline-success mx-2"data-toggle="modal" data-target="#quemodal">Ask question</button>
+
         </div>
     </div>
+    <?php
+$method=$_SERVER['REQUEST_METHOD'];
+if($method=='POST')
+{
+// here we made post request on same page.
+  require'data_link.php';
+  $name=$_POST['name'];
+  $que=$_POST['question'];
+  $coment=$_POST['descr'];
+  $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`,`comment`,`cat_id`) VALUES (NULL, '$name', '$Top','$que','$coment','$vId')";
+       $data5=mysqli_query($link,$sql5);
+      // header("location:idiscus.php");
+
+
+}
+//echo $method;
+// $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`) VALUES (NULL, '$name', '$Top','$que')";
+    //  $data5=mysqli_query($link,$sql5);
+    //  if($data5)
+    //  echo "inserted successfuly";
+     ?> 
 
     <div class='container'>
         <h1 class='text-center text-color-primary py-2'>Discussion of <?php echo  $Top; ?></h1>
         <?php
         $check=true;
-      $sql4="SELECT * FROM `question_ask`WHERE`Topic`='$Top'";
+      $sql4="SELECT * FROM `question_ask`WHERE`cat_id`='$vId'";
       $data4=mysqli_query($link,$sql4);
       while($fetch1=mysqli_fetch_assoc($data4))
       { $check=false;
@@ -56,6 +80,7 @@
         $nam=$fetch1['Name'];
         $ques=$fetch1['Question'];
         $Id=$fetch1['id'];
+        $sn=$fetch1['cat_id'];
     echo "<div class='media my-4'>
     <!-- here we set width of image to look better -->
     <img src='img/User.png' width=35px; class='mr-3' alt='...'>
@@ -68,6 +93,7 @@
     
      ?>
      <?php 
+     $ser=$_SERVER['REQUEST_URI'];
      if($check)
      {
         echo"<div class='jumbotron jumbotron-fluid'>
@@ -77,7 +103,7 @@
         </div>
       </div>";
       echo '
-      <form action="insert.php?top='.$Top.'" method="POST">
+      <form action="'.$ser.' " method="POST">
       <div class="form-group">
       <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Enter your name">
       </div>
@@ -94,15 +120,37 @@
     // Alwalys good logic to send data to one location to another location
     ?>
      </div>
-<?php
-$method=$_SERVER['REQUEST_METHOD'];
-//echo $method;
-// $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`) VALUES (NULL, '$name', '$Top','$que')";
-    //  $data5=mysqli_query($link,$sql5);
-    //  if($data5)
-    //  echo "inserted successfuly";
-     ?> 
-    
+     <?php
+    if(!$check)
+    {echo '
+    <div class="modal fade" id="quemodal" tabindex="-1" role="dialog" aria-labelledby="quemodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="quemodalLabel">Ask_question</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form action="'.$ser.'" method="POST">
+      <div class="form-group">
+      <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+    <label for="exampleInputquestion">question title</label>
+    <input type="text" class="form-control" name="question" id="exampleInputquestion" aria-describedby="emailHelp" placeholder="Enter Question">
+    <small id="emailHelp" class="form-text text-muted">pls enter title as brief as possible.</small>
+  </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Enter your question description.</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="descr" rows="3"></textarea>
+      </div><button class="btn btn-primary">Submit</button>
+    </form></div>';}
+    ?>
+
+    <?php 
+require'footer.php';?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -114,7 +162,7 @@ $method=$_SERVER['REQUEST_METHOD'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    
 </body>
-<?php 
-require'footer.php';?>
+
 </html>
