@@ -16,6 +16,9 @@
    
 <?php
       require'data_link.php';
+      $method=$_SERVER['REQUEST_METHOD'];
+if($method=='POST')// it work only when we submitte form.at that time method is post.
+{
 $tab=false;
 $btn=false;
 // Taking data in signup form.
@@ -48,12 +51,13 @@ if($tab)
   </div>";
 }
 else
+{
 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
 <strong>Opps!</strong> It seems like user already register or password not match with confirm password.
 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
   <span aria-hidden='true'>&times;</span>
 </button>
-</div>";
+</div>";}}
 
 ?>
 <?php

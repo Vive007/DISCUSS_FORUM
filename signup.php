@@ -5,6 +5,7 @@
 
  <!-- //require'header.php' -->
 <!-- Modal -->
+
 <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signupmodalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -15,7 +16,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action='message_view.php'method='POST'>
+      <form action="message_view.php"method='POST'>
   <div class="form-group">
     <label for="userid">Email address</label>
     <input type="text" class="form-control" id="userid"name="userid"aria-describedby="userid" placeholder="Enter email">
@@ -42,5 +43,3 @@
     </div>
   </div>
 </div>
- 
- 
