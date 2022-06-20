@@ -13,11 +13,11 @@
   <body>
 
   <?php
-   // session_start();
-     //if(isset($_SESSION['username']))
-    //require 'header2.php';
-   // else
-   // require 'header.php';?>
+    session_start();
+     if(isset($_SESSION['username']))
+    require 'header2.php';
+    else
+    require 'header.php';?>
 <?php
 require "data_link.php";
 //$usr=$_SESSION['username'];
@@ -42,23 +42,31 @@ while($fetch1=mysqli_fetch_assoc($data4))
 </div></div>";}
 
 ?>
-
+<?php
+if(isset($_SESSION['username']))
+{echo '
 <div class="container">
-<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
+<form action=" '. $_SERVER['REQUEST_URI'].'" method="POST">
   <div class="form-group">
    <h5> <label for="exampleFormControlTextarea1">Answer here</label></h5>
     <textarea class="form-control" id="exampleFormControlTextarea1"name="solution" rows="3"></textarea>
   </div>
 <button class="btn btn-primary">submit</button>
-</form></div>
+</form></div>';}
+else
+echo '
+<div class="container text-center">
+<h2><span class="badge badge-info">login to answer the question</span></h2></div>';?>
 <?php
-
+if(isset($_SESSION['username']))
+{
+  $usR=$_SESSION['username'];
  $method=$_SERVER['REQUEST_METHOD'];
  if($method=='POST')
  {
 $soln=$_POST['solution'];
-$sql7="INSERT INTO `community_professional` (`devloper_id`, `dev_name`, `Answer`,`user_id`) VALUES (NULL, 'predator35', '$soln','$Top')";
-$data7=mysqli_query($link,$sql7);}
+$sql7="INSERT INTO `community_professional` (`devloper_id`, `dev_name`, `Answer`,`user_id`) VALUES (NULL, '$usR', '$soln','$Top')";
+$data7=mysqli_query($link,$sql7);}}
 ?>
 
 <?php
