@@ -14,9 +14,51 @@
 </head>
 
 <body>
+    
+
+<?php
+$alert=false;
+require 'data_link.php';
+@$usernam=$_POST['username'];
+@$password=$_POST['password'];
+$method=$_SERVER['REQUEST_METHOD'];
+if($method=='POST')// it work only when we submitte form.at that time method is post.
+{
+$sql8="SELECT * FROM`user_info`WHERE`user_id` ='$usernam'";
+$data8=mysqli_query($link,$sql8);
+while($fetch2=mysqli_fetch_assoc($data8))
+{
+  $username=$fetch2['user_id'];
+  $upassword=$fetch2['password'];
+
+if($eco=password_verify($password,$upassword))
+{
+  $alert=true;
+}}
+if($alert)
+{
+  echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+  <strong> successfuly login!</strong> 
+  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+    <span aria-hidden='true'>&times;</span>
+  </button>
+</div>";
+// starting the session.
+session_start();
+$_SESSION['username']=$username;
+
+}
+else 
+echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+<strong>Oops!</strong> It seems like user not register or password is incorrect.
+<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+  <span aria-hidden='true'>&times;</span>
+</button>
+</div>";}
+?>
     <?php 
-require'data_link.php';
-include'header2.php';?>
+    session_start();
+include 'header2.php';?>
     <!-- crousel slider code start from here -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">

@@ -15,7 +15,7 @@
 
    
 <?php
-      require'data_link.php';
+      require 'data_link.php';
       $method=$_SERVER['REQUEST_METHOD'];
 if($method=='POST')// it work only when we submitte form.at that time method is post.
 {
@@ -61,7 +61,8 @@ echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
 
 ?>
 <?php
-require'idiscus.php';?>
+require 'header.php';
+require 'idiscus.php';?>
  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

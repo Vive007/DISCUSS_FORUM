@@ -14,8 +14,14 @@
 </head>
 
 <body>
-    <?php 
-    require'header.php';?>
+    <?php
+    session_start();
+   
+     if(isset($_SESSION['username']))
+    {$usr=$_SESSION['username'];
+     require 'header2.php';}
+    else
+    require 'header.php';?>
     <!-- //<h1>Hello, world!</h1> -->
     <?php
       
@@ -38,11 +44,14 @@
     <div class='container my-3'>
         <div class='jumbotron '>
             <h1 class='display-4'>Welcome to discussion forum of <?php echo  $Top ;?>!</h1>
-            <p class='lead'>Pls read term and condition and follow the rule.</p>
+            <p class='lead'>Pls read term and condition and follow the rule:<br><a
+                    href="https://www.texasbarcle.com/cle/site/notices/OCForumTerms.asp"
+                    class="badge badge-info size-md">Term & condition</a>.</p>
             <hr class='my-4'>
             <p><?php echo $Des ;?></p>
             <!-- <a class='btn btn-primary btn-lg' href='#' role='button'>Ask_question</a> -->
-              <button type="button" class="btn btn-outline-success mx-2"data-toggle="modal" data-target="#quemodal">Ask question</button>
+            <button type="button" class="btn btn-outline-success mx-2" data-toggle="modal" data-target="#quemodal">Ask
+                question</button>
 
         </div>
     </div>
@@ -52,10 +61,9 @@ if($method=='POST')
 {
 // here we made post request on same page.
   require'data_link.php';
-  $name=$_POST['name'];
   $que=$_POST['question'];
   $coment=$_POST['descr'];
-  $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`,`comment`,`cat_id`) VALUES (NULL, '$name', '$Top','$que','$coment','$vId')";
+  $sql5="INSERT INTO `question_ask` (`id`, `Name`, `Topic`, `Question`,`comment`,`cat_id`) VALUES (NULL, '$usr', '$Top','$que','$coment','$vId')";
        $data5=mysqli_query($link,$sql5);
       // header("location:idiscus.php");
 
@@ -66,7 +74,7 @@ if($method=='POST')
     //  $data5=mysqli_query($link,$sql5);
     //  if($data5)
     //  echo "inserted successfuly";
-     ?> 
+     ?>
 
     <div class='container'>
         <h1 class='text-center text-color-primary py-2'>Discussion of <?php echo  $Top; ?></h1>
@@ -92,7 +100,7 @@ if($method=='POST')
     
     
      ?>
-     <?php 
+        <?php 
      $ser=$_SERVER['REQUEST_URI'];
      if($check)
      {
@@ -119,8 +127,10 @@ if($method=='POST')
     </form>';}
     // Alwalys good logic to send data to one location to another location
     ?>
-     </div>
-     <?php
+    </div>
+    <?php
+     if(isset($_SESSION['username']))
+     {
     if(!$check)
     {echo '
     <div class="modal fade" id="quemodal" tabindex="-1" role="dialog" aria-labelledby="quemodalLabel" aria-hidden="true">
@@ -135,9 +145,6 @@ if($method=='POST')
         <div class="modal-body">
         <form action="'.$ser.'" method="POST">
       <div class="form-group">
-      <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Enter your name">
-      </div>
-      <div class="form-group">
     <label for="exampleInputquestion">question title</label>
     <input type="text" class="form-control" name="question" id="exampleInputquestion" aria-describedby="emailHelp" placeholder="Enter Question">
     <small id="emailHelp" class="form-text text-muted">pls enter title as brief as possible.</small>
@@ -146,11 +153,22 @@ if($method=='POST')
         <label for="exampleFormControlTextarea1">Enter your question description.</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" name="descr" rows="3"></textarea>
       </div><button class="btn btn-primary">Submit</button>
-    </form></div>';}
+    </form></div>';}}
+    else
+    echo '<div class="modal fade" id="quemodal" tabindex="-1" role="dialog" aria-labelledby="quemodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="quemodalLabel">pls sign in to Ask_question</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
     ?>
 
     <?php 
-require'footer.php';?>
+    session_reset();
+//require 'footer.php';?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -162,7 +180,7 @@ require'footer.php';?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    
+
 </body>
 
 </html>

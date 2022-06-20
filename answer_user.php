@@ -12,11 +12,18 @@
   </head>
   <body>
 
-
+  <?php
+   // session_start();
+     //if(isset($_SESSION['username']))
+    //require 'header2.php';
+   // else
+   // require 'header.php';?>
 <?php
-require "header.php";
 require "data_link.php";
+//$usr=$_SESSION['username'];
 $Top=$_GET['na'];
+//$sql4a="SELECT * FROM `user_info`WHERE `user_id`='$usr'";
+
 $sql4="SELECT * FROM `question_ask`WHERE`id`='$Top'";
 $data4=mysqli_query($link,$sql4);
 while($fetch1=mysqli_fetch_assoc($data4))
@@ -74,6 +81,8 @@ echo "<div class='media my-4'>
 </div>";}
 
 ?>
+<?php
+session_reset();// it is use to reset the session with original.?>
  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -12,6 +12,7 @@
   </head>
   <body>
   <?php
+//verification of login detail code start from here.
 $alert=false;
 require 'data_link.php';
 @$usernam=$_POST['username'];
@@ -51,11 +52,16 @@ echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
 </button>
 </div>";}
 ?>
-<?php
-if(isset($_SESSION['username']))
-{require 'idiscus2.php';}
+    <?php 
+    //session_start();
+    if(isset($_SESSION['username']))
+{include 'header2.php';
+    //session_unset();
+}
 else
-require 'idiscus.php';?>
+{require 'data_link.php';
+include 'header.php';}?>
+<?php require 'idiscus.php';?>
  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

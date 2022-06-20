@@ -14,9 +14,8 @@
 </head>
 
 <body>
-    <?php 
-require'data_link.php';
-include'header.php';?>
+    
+
     <!-- crousel slider code start from here -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">

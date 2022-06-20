@@ -16,7 +16,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="message_view.php"method='POST'>
+      <form action="_signupview.php"method='POST'>
   <div class="form-group">
     <label for="userid">Email address</label>
     <input type="text" class="form-control" id="userid"name="userid"aria-describedby="userid" placeholder="Enter email">
