@@ -15,7 +15,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="idiscus_forum.php" method="POST">
+      <form action="idiscus_forum.php?authorization=452" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="text" class="form-control" id="exampleInputEmail1"name="username" aria-describedby="emailHelp" placeholder="Enter email">

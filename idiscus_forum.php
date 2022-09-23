@@ -18,6 +18,17 @@
 //verification of login detail code start from here.
 $alert=false;
 require 'data_link.php';
+// $method=$_SERVER['REQUEST_METHOD'];
+// echo $method;
+// if($method=='POST')
+// {
+@ $authorize=$_GET['authorization'];
+// echo $authorize;
+// if($authorize== 452)
+// {
+//   session_start();
+//   $_SESSION['username']=$username;
+// }}
 @$usernam=$_POST['username'];
 @$password=$_POST['password'];
 $method=$_SERVER['REQUEST_METHOD'];
@@ -42,11 +53,14 @@ if($alert)
     <span aria-hidden='true'>&times;</span>
   </button>
 </div>";
-// starting the session.
-session_start();
-$_SESSION['username']=$username;
+//starting the session.
+if($authorize==452)
+ {
+   session_start();
+  $_SESSION['username']=$username;
+ }
 
-}
+ }
 else 
 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
 <strong>Oops!</strong> It seems like user not register or password is incorrect.
